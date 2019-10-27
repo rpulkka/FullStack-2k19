@@ -12,3 +12,9 @@ Tehtäviä 1-3 ei tarvitse palauttaa.<br/><br/>
 [Kurssitiedot](https://github.com/rpulkka/FullStack-2k19/tree/master/Osa_1/kurssitiedot)<br/>
 [Unicafe](https://github.com/rpulkka/FullStack-2k19/tree/master/Osa_1/unicafe)<br/>
 [Anekdootit](https://github.com/rpulkka/FullStack-2k19/tree/master/Osa_1/anekdootit)<br/>
+
+<h2>Osa 2</h2>
+
+[Kurssitiedot](https://github.com/rpulkka/FullStack-2k19/tree/master/Osa_2/kurssitiedot)<br/>
+[Puhelinluettelo](https://github.com/rpulkka/FullStack-2k19/tree/master/Osa_2/puhelinluettelo)<br/>
+[Maiden tiedot](https://github.com/rpulkka/FullStack-2k19/tree/master/Osa_2/maidentiedot)<br/>
