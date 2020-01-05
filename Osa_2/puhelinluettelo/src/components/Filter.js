@@ -11,6 +11,7 @@ const Filter = (props) => {
         })
         return filteredList
     }
+
     const rows = () => filtered().map(person => <li key={person.name}>{person.name} {person.number} <DeleteButton Removal={props.Removal} person={person}/></li>)
     return rows()
 }

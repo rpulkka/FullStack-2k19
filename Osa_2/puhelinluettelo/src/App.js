@@ -15,9 +15,9 @@ const App = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:3001/db')
+      .get('/api/persons')
       .then(response => {
-        setPersons(response.data.persons)
+        setPersons(response.data)
       })
   }, [])
 
@@ -57,6 +57,42 @@ const App = () => {
     return names.includes(newNumber)
   }
 
+  const Update = (person) => {
+    const changedPerson = { ...person, number: newNumber }
+    let failure = false
+
+    personService
+      .update(changedPerson)
+      .then((returnedPerson) => {
+        setPersons(persons.map(p => p.id !== person.id ? p : returnedPerson))
+      })
+      .catch(error => {
+        setPersons(persons.filter(p => p.id !== person.id))
+        setNewName('')
+        setNewNumber('')
+        setStyle('removal')
+        setMessage(
+          `${person.name}' was recently removed from the database by another user, so it couldn't be updated.`
+        )
+        setTimeout(() => {          
+          setMessage(null)        
+        }, 4000)
+        failure = true
+      })
+    
+    if(!failure) {
+      setNewName('')
+      setNewNumber('')
+      setStyle('update')
+      setMessage(
+        `The number of '${person.name}' was successfully updated.`
+      )
+      setTimeout(() => {          
+        setMessage(null)        
+      }, 4000)
+    }
+  }
+
   const Addition = (event) => {
     event.preventDefault()
 
@@ -93,42 +129,6 @@ const App = () => {
       setStyle('addition')
       setMessage(
         `'${personObject.name}' was successfully added to the phonebook.`
-      )
-      setTimeout(() => {          
-        setMessage(null)        
-      }, 4000)
-    }
-  }
-
-  const Update = (person) => {
-    const changedPerson = { ...person, number: newNumber }
-    let failure = false
-
-    personService
-      .update(changedPerson)
-      .then((returnedPerson) => {
-        setPersons(persons.map(p => p.id !== person.id ? p : returnedPerson))
-      })
-      .catch(error => {
-        setPersons(persons.filter(p => p.id !== person.id))
-        setNewName('')
-        setNewNumber('')
-        setStyle('removal')
-        setMessage(
-          `${person.name}' was recently removed from the database by another user, so it couldn't be updated.`
-        )
-        setTimeout(() => {          
-          setMessage(null)        
-        }, 4000)
-        failure = true
-      })
-    
-    if(!failure) {
-      setNewName('')
-      setNewNumber('')
-      setStyle('update')
-      setMessage(
-        `The number of '${person.name}' was successfully updated.`
       )
       setTimeout(() => {          
         setMessage(null)        
