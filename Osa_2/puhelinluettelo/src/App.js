@@ -95,6 +95,7 @@ const App = () => {
 
   const Addition = (event) => {
     event.preventDefault()
+    let failure = false
 
     if(checkForDuplicateNames(persons)) {
       let message = `${newName} is already added in the phonebook, replace the old number with a new one?`
@@ -125,14 +126,25 @@ const App = () => {
           setNewName('')
           setNewNumber('')
         })
+        .catch(error => {
+          setStyle('removal')
+          console.log(error.response.data)
+          setMessage(''+error.response.data.error)
+          setTimeout(() => {          
+            setMessage(null)        
+          }, 4000)
+          failure = true
+        })
       
-      setStyle('addition')
-      setMessage(
-        `'${personObject.name}' was successfully added to the phonebook.`
-      )
-      setTimeout(() => {          
-        setMessage(null)        
-      }, 4000)
+      if(!failure) {
+        setStyle('addition')
+        setMessage(
+          `'${personObject.name}' was successfully added to the phonebook.`
+        )
+        setTimeout(() => {          
+          setMessage(null)        
+        }, 4000)
+      }
     }
   }
 
