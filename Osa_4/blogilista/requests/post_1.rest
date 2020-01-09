@@ -1,0 +1,9 @@
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+
+{
+    "title": "Ruokapankki",
+    "author": "Jaana",
+    "url": "http://ruokapankki.blogspot.com/",
+    "likes": 0
+}
