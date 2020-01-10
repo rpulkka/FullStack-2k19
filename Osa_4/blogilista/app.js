@@ -1,11 +1,15 @@
+const config = require('./utils/config')
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const blogsRouter = require('./controllers/blogs')
+const usersRouter = require('./controllers/users')
+const loginRouter = require('./controllers/login')
+const middleware = require('./utils/middleware')
 const mongoose = require('mongoose')
 
-const mongoUrl = 'mongodb+srv://rpulkka:ohth5ieh@fullstack2020-uzswm.mongodb.net/bloglist?retryWrites=true&w=majority'
+const mongoUrl = config.MONGODB_URI
 mongoose.connect(mongoUrl, { useNewUrlParser: true })
   .then(result => {
     console.log('connected to MongoDB')
@@ -16,7 +20,13 @@ mongoose.connect(mongoUrl, { useNewUrlParser: true })
 
 app.use(cors())
 app.use(bodyParser.json())
+app.use(middleware.isolateToken)
 
 app.use('/api/blogs', blogsRouter)
+app.use('/api/users', usersRouter)
+app.use('/api/login', loginRouter)
+
+app.use(middleware.unknownEndpoint)
+app.use(middleware.errorHandler)
 
 module.exports = app
