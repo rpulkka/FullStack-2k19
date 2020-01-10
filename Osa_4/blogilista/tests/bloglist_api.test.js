@@ -3,6 +3,7 @@ const supertest = require('supertest')
 const app = require('../app')
 const api = supertest(app)
 const Blog = require('../models/blog')
+const User = require('../models/user')
 const helper = require('./test_helper')
 
 beforeEach(async () => {
@@ -11,6 +12,13 @@ beforeEach(async () => {
   for (let blog of helper.listWithManyBlogs) {
     let blogObject = new Blog(blog)
     await blogObject.save()
+  }
+
+  await User.remove({})
+
+  for (let user of helper.listWithOneUser) {
+    let userObject = new User(user)
+    await userObject.save()
   }
 })
 
@@ -24,7 +32,7 @@ test('returned blogs have field named id instead of __id', async () => {
   expect(response.body[0].id).toBeDefined
 })
 
-describe('POST route tests', () => {
+describe('blog POST route tests', () => {
   test('valid blogs are added to the database correctly', async () => {
     const newBlog = {
       title: 'Food blog',
@@ -91,6 +99,56 @@ describe('POST route tests', () => {
 
     const returnedBlogs = await helper.blogsInDatabase()
     expect(returnedBlogs.length).toBe(helper.listWithManyBlogs.length)
+  })
+})
+
+describe('user POST route tests', () => {
+  test('user without unique username will not be added', async () => {
+    const newUser = {
+      username: 'bloggod98',
+      name: 'Kalle Korhonen',
+      password: 'munsalainensana'
+    }
+
+    await api
+      .post('/api/users')
+      .send(newUser)
+      .expect(400)
+
+    const returnedUsers = await helper.usersInDatabase()
+    expect(returnedUsers.length).toBe(helper.listWithOneUser.length)
+  })
+
+  test('user with too short username will not be added', async () => {
+    const newUser = {
+      username: 'JP',
+      name: 'John Petrucci',
+      password: 'xicantplayguitarlolx'
+    }
+
+    await api
+      .post('/api/users')
+      .send(newUser)
+      .expect(400)
+
+    const returnedUsers = await helper.usersInDatabase()
+    expect(returnedUsers.length).toBe(helper.listWithOneUser.length)
+  })
+
+  test('user with too short password will not be added', async () => {
+    const newUser = {
+      username: 'Uimahalli',
+      name: 'Michael Phelps',
+      password: 'uh'
+    }
+
+    await api
+      .post('/api/users')
+      .send(newUser)
+      .expect(400)
+
+    const returnedUsers = await helper.usersInDatabase()
+    expect(returnedUsers.length).toBe(helper.listWithOneUser.length)
   })
 })
 
