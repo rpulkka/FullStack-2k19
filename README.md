@@ -18,3 +18,11 @@ Tehtäviä 1-3 ei tarvitse palauttaa.<br/><br/>
 [Kurssitiedot](https://github.com/rpulkka/FullStack-2k19/tree/master/Osa_2/kurssitiedot)<br/>
 [Puhelinluettelo](https://github.com/rpulkka/FullStack-2k19/tree/master/Osa_2/puhelinluettelo)<br/>
 [Maiden tiedot](https://github.com/rpulkka/FullStack-2k19/tree/master/Osa_2/maidentiedot)<br/>
+
+<h2>Osa 3</h2>
+
+[Toinen repo](https://github.com/rpulkka/FullStack2k19-osa3)
+
+<h2>Osa 4</h2>
+
+[Blogilista](https://github.com/rpulkka/FullStack-2k19/tree/master/Osa_4/blogilista)
