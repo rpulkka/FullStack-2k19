@@ -1,4 +1,6 @@
-# FullStack-2k19
+# FullStack-2k19 & FullStack-2k20
+
+Alta löydät suoritukseni HY:n FullStack -kurssilta, josta osat 0-4 kävin vuoden 2019 puolella ja osat 5-9 kävin 2020 puolella. Osa 3 on tehty toiseen repositorioon ohjeistuksen mukaan, siihen linkki löytyy alla olevasta listauksesta Osa 3 -kohdasta.
 
 <h2>Osa 0</h2>
 
