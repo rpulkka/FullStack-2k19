@@ -8,7 +8,7 @@ const BlogList = (props) => {
       <button onClick={props.logout}>Log out</button>
       <h2>Blogs</h2>
       {props.blogs.map(blog =>
-        <Blog key={blog.id} blog={blog} />
+        <Blog key={blog.id} blog={blog} editBlog={props.editBlog} removeBlog={props.removeBlog} user={props.user} />
       )}
     </div>
   )

@@ -4,14 +4,10 @@ import loginService from './services/login'
 import BlogList from './components/BlogList'
 import LoginForm from './forms/LoginForm'
 import CreateBlogForm from './forms/CreateBlogForm'
+import Togglable from './components/Togglable'
 
 const App = () => {
   const [blogs, setBlogs] = useState([])
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
-  const [title, setTitle] = useState('')
-  const [author, setAuthor] = useState('')
-  const [URL, setURL] = useState('')
   const [user, setUser] = useState(null)
   const [message, setMessage] = useState(null)
   const [style, setStyle] = useState(null)
@@ -24,34 +20,46 @@ const App = () => {
     init()
   }, [])
 
+  const init = () => {
+    const loggedInUser = window.localStorage.getItem('loggedInUser')
+    if (loggedInUser) {
+      const user = JSON.parse(loggedInUser)
+      setUser(user)
+    }
+  }
+
+  const initBlogs = async () => {
+    const allBlogs = await blogService.getAll()
+    setBlogs(allBlogs.sort((blogA, blogB) => blogB.likes - blogA.likes))
+  }
+
   const Notification = () => {
     if (message === null) {
       return null
     }
-  
-    if(style === "addition") {
+
+    if(style === 'addition') {
       return (
-        <div className="addition">
+        <div className='addition'>
           {message}
         </div>
       )
-    } else if(style === "update") {
+    } else if(style === 'update') {
       return (
-        <div className="update">
+        <div className='update'>
           {message}
         </div>
       )
     } else {
       return (
-        <div className="removal">
+        <div className='removal'>
           {message}
         </div>
       )
     }
   }
 
-  const handleLogin = async (event) => {
-    event.preventDefault()
+  const logIn = async (username, password) => {
     try {
       const user = await loginService.login({
         username, password
@@ -59,8 +67,6 @@ const App = () => {
       setUser(user)
       window.localStorage.setItem('loggedInUser', JSON.stringify(user))
       blogService.setToken(user.token)
-      setUsername('')
-      setPassword('')
       setStyle('addition')
       setMessage('Logged in successfully')
       setTimeout(() => {
@@ -73,19 +79,17 @@ const App = () => {
         setMessage(null)
       }, 5000)
     }
+    initBlogs()
   }
 
-  const handleCreation = async (event) => {
-    event.preventDefault()
+  const createBlog = async (newBlog) => {
     blogService.setToken(user.token)
-    const newBlog = {
-      title: title,
-      author: author,
-      url: URL,
-      likes: 0
-    }
     try {
       blogService.create(newBlog)
+      const newBlogs = blogs
+      newBlogs.push(newBlog)
+      console.log(newBlogs)
+      setBlogs(newBlogs)
       setStyle('addition')
       setMessage('Blog has been posted to the server successfully.')
       setTimeout(() => {
@@ -98,25 +102,49 @@ const App = () => {
         setMessage(null)
       }, 5000)
     }
-    setTitle('')
-    setAuthor('')
-    setURL('')
-    setTimeout(() => {
-      initBlogs()
-    }, 500)
   }
 
-  const init = () => {
-    const loggedInUser = window.localStorage.getItem('loggedInUser')
-    if (loggedInUser) {
-      const user = JSON.parse(loggedInUser)
-      setUser(user)
+  const editBlog = async (blog) => {
+    blogService.setToken(user.token)
+    try {
+      blogService.edit(blog)
+      setStyle('addition')
+      setMessage('Blog has been edited successfully.')
+      setTimeout(() => {
+        setMessage(null)
+      }, 5000)
+    } catch (exception) {
+      setStyle('removal')
+      setMessage('Error while editing the blog.')
+      setTimeout(() => {
+        setMessage(null)
+      }, 5000)
     }
+    initBlogs()
   }
 
-  const initBlogs = async () => {
-    const allBlogs = await blogService.getAll()
-    setBlogs(allBlogs)
+  const removeBlog = async (blog) => {
+    blogService.setToken(user.token)
+    const confirmation = window.confirm(`Are you sure you want to delete this blog: ${blog.title} by ${blog.author}`)
+    if(!confirmation) { return }
+    try {
+      blogService.remove(blog)
+      const index = blogs.findIndex(b => b.id === blog.id)
+      const updatedBlogs = blogs
+      updatedBlogs.splice(index, 1)
+      setBlogs(updatedBlogs)
+      setStyle('update')
+      setMessage('Blog has been deleted successfully.')
+      setTimeout(() => {
+        setMessage(null)
+      }, 5000)
+    } catch (exception) {
+      setStyle('removal')
+      setMessage('Error while trying to delete the blog.')
+      setTimeout(() => {
+        setMessage(null)
+      }, 5000)
+    }
   }
 
   const logout = () => {
@@ -136,15 +164,17 @@ const App = () => {
       {user === null ?
         <div>
           <h1>Log in</h1>
-          <LoginForm username={username} password={password} setUsername={setUsername} setPassword={setPassword} handleLogin={handleLogin} />
+          <LoginForm logIn={logIn} />
         </div>
         :
         <div>
           <h1>Blogs</h1>
           <p>User {user.username} is logged in.</p>
           <h2>Create a New Blog</h2>
-          <CreateBlogForm title={title} author={author} URL={URL} setTitle={setTitle} setAuthor={setAuthor} setURL={setURL} handleCreation={handleCreation} />
-          <BlogList blogs={blogs} logout={logout} />
+          <Togglable buttonLabel='Post a New Blog'>
+            <CreateBlogForm createBlog={createBlog} user={user} />
+          </Togglable>
+          <BlogList blogs={blogs} logout={logout} editBlog={editBlog} removeBlog={removeBlog} user={user} />
         </div>
       }
     </div>
