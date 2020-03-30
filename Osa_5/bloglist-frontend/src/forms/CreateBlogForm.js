@@ -31,6 +31,7 @@ const CreateBlogForm = (props) => {
             type="text"
             value={title}
             name="Title"
+            id='title'
             onChange={({ target }) => setTitle(target.value)}
           />
         </div>
@@ -40,6 +41,7 @@ const CreateBlogForm = (props) => {
             type="text"
             value={author}
             name="Author"
+            id='author'
             onChange={({ target }) => setAuthor(target.value)}
           />
         </div>
@@ -49,6 +51,7 @@ const CreateBlogForm = (props) => {
             type="text"
             value={URL}
             name="URL"
+            id='url'
             onChange={({ target }) => setURL(target.value)}
           />
         </div>
