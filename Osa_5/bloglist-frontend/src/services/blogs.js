@@ -15,7 +15,6 @@ const create = async (newBlog) => {
     headers: { Authorization: token },
   }
   const response = await axios.post(baseUrl, newBlog, config)
-  console.log(response.data)
   return response.data
 }
 
@@ -30,6 +29,7 @@ const edit = async (blog) => {
     title: blog.title,
     url: blog.url
   }
+  console.log(blog.likes)
   const endpoint = baseUrl + '/' + blog.id
   const response = await axios.put(endpoint, data, config)
   return response.data

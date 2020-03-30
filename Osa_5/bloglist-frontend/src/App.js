@@ -85,10 +85,9 @@ const App = () => {
   const createBlog = async (newBlog) => {
     blogService.setToken(user.token)
     try {
-      blogService.create(newBlog)
+      const blog = await blogService.create(newBlog)
       const newBlogs = blogs
-      newBlogs.push(newBlog)
-      console.log(newBlogs)
+      newBlogs.push(blog)
       setBlogs(newBlogs)
       setStyle('addition')
       setMessage('Blog has been posted to the server successfully.')
