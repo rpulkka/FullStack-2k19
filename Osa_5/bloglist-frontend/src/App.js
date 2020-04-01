@@ -86,6 +86,7 @@ const App = () => {
     blogService.setToken(user.token)
     try {
       const blog = await blogService.create(newBlog)
+      blog.user = user
       const newBlogs = blogs
       newBlogs.push(blog)
       setBlogs(newBlogs)
@@ -106,7 +107,12 @@ const App = () => {
   const editBlog = async (blog) => {
     blogService.setToken(user.token)
     try {
-      blogService.edit(blog)
+      const response = await blogService.edit(blog)
+      // const index = blogs.findIndex((b) => b.id === response.id)
+      // console.log(blogs)
+      // const newBlogs = blogs
+      // newBlogs[index] = response
+      // setBlogs(newBlogs)
       setStyle('addition')
       setMessage('Blog has been edited successfully.')
       setTimeout(() => {

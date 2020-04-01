@@ -29,7 +29,6 @@ const edit = async (blog) => {
     title: blog.title,
     url: blog.url
   }
-  console.log(blog.likes)
   const endpoint = baseUrl + '/' + blog.id
   const response = await axios.put(endpoint, data, config)
   return response.data
