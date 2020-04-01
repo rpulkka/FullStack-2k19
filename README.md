@@ -27,4 +27,8 @@ Tehtäviä 1-3 ei tarvitse palauttaa.<br/><br/>
 
 <h2>Osa 4</h2>
 
-[Blogilista](https://github.com/rpulkka/FullStack-2k19/tree/master/Osa_4/blogilista)
+[Blogilista - Back End](https://github.com/rpulkka/FullStack-2k19/tree/master/Osa_4/blogilista)
+
+<h2>Osa 5</h2>
+
+[Blogilista - Front End](https://github.com/rpulkka/FullStack-2k19/tree/master/Osa_5/bloglist-frontend)
