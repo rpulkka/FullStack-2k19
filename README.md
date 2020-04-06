@@ -32,3 +32,8 @@ Tehtäviä 1-3 ei tarvitse palauttaa.<br/><br/>
 <h2>Osa 5</h2>
 
 [Blogilista - Front End](https://github.com/rpulkka/FullStack-2k19/tree/master/Osa_5/bloglist-frontend)
+
+<h2>Osa 6</h2>
+
+[Unicafe Redux](https://github.com/rpulkka/FullStack-2k19/tree/master/Osa_6/unicafe-redux)<br/>
+[Anekdootit Redux](https://github.com/rpulkka/FullStack-2k19/tree/master/Osa_6/redux-anecdotes)
