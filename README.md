@@ -40,8 +40,8 @@ Tehtäviä 1-3 ei tarvitse palauttaa.<br/><br/>
 
 <h2>Osa 7</h2>
 
-[Reitetyt Anekdootit](https://github.com/rpulkka/FullStack-2k19/tree/master/Osa_7/routed-anecdotes)
-[Country Hook](https://github.com/rpulkka/FullStack-2k19/tree/master/Osa_7/country-hook)
-[Ultimate Hooks](https://github.com/rpulkka/FullStack-2k19/tree/master/Osa_7/ultimate-hooks)
-[Blogilista 2.0. - Front End](https://github.com/rpulkka/FullStack-2k19/tree/master/Osa_7/bloglist-v2-frontend)
+[Reitetyt Anekdootit](https://github.com/rpulkka/FullStack-2k19/tree/master/Osa_7/routed-anecdotes)<br/>
+[Country Hook](https://github.com/rpulkka/FullStack-2k19/tree/master/Osa_7/country-hook)<br/>
+[Ultimate Hooks](https://github.com/rpulkka/FullStack-2k19/tree/master/Osa_7/ultimate-hooks)<br/>
+[Blogilista 2.0. - Front End](https://github.com/rpulkka/FullStack-2k19/tree/master/Osa_7/bloglist-v2-frontend)<br/>
 [Blogilista 2.0. - Back End](https://github.com/rpulkka/FullStack-2k19/tree/master/Osa_7/bloglist-v2-backend)
