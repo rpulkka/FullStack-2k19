@@ -37,3 +37,11 @@ Tehtäviä 1-3 ei tarvitse palauttaa.<br/><br/>
 
 [Unicafe Redux](https://github.com/rpulkka/FullStack-2k19/tree/master/Osa_6/unicafe-redux)<br/>
 [Anekdootit Redux](https://github.com/rpulkka/FullStack-2k19/tree/master/Osa_6/redux-anecdotes)
+
+<h2>Osa 7</h2>
+
+[Reitetyt Anekdootit](https://github.com/rpulkka/FullStack-2k19/tree/master/Osa_7/routed-anecdotes)
+[Country Hook](https://github.com/rpulkka/FullStack-2k19/tree/master/Osa_7/country-hook)
+[Ultimate Hooks](https://github.com/rpulkka/FullStack-2k19/tree/master/Osa_7/ultimate-hooks)
+[Blogilista 2.0. - Front End](https://github.com/rpulkka/FullStack-2k19/tree/master/Osa_7/bloglist-v2-frontend)
+[Blogilista 2.0. - Back End](https://github.com/rpulkka/FullStack-2k19/tree/master/Osa_7/bloglist-v2-backend)
