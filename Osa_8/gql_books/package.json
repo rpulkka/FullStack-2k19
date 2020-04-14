@@ -1,0 +1,19 @@
+{
+  "name": "gql_books",
+  "version": "1.0.0",
+  "description": "My first GQL app",
+  "main": "library-backend.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node library-backend.js",
+    "watch": "nodemon library-backend.js"
+  },
+  "author": "rpulkka",
+  "license": "MIT",
+  "dependencies": {
+    "apollo-server": "^2.12.0",
+    "graphql": "^15.0.0",
+    "nodemon": "^2.0.3",
+    "uuid": "^7.0.3"
+  }
+}
