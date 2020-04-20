@@ -41,7 +41,7 @@ const Authors = (props) => {
   const handleChange = (selectedOption) => {
     setName(selectedOption)
   }
-  
+
   const authors = result.data.allAuthors
 
   return (
@@ -68,23 +68,27 @@ const Authors = (props) => {
         </tbody>
       </table>
       <br />
-      <h2>Set birthyear</h2>
-      <form onSubmit={submit}>
-        name
-        <Select
-          value={name}
-          onChange={handleChange}
-          options={options}
-        />
+      {props.token &&
         <div>
-          born
+          <h2>Set birthyear</h2>
+          <form onSubmit={submit}>
+            name
+        <Select
+              value={name}
+              onChange={handleChange}
+              options={options}
+            />
+            <div>
+              born
           <input
-            value={born}
-            onChange={({ target }) => setBorn(target.value)}
-          />
+                value={born}
+                onChange={({ target }) => setBorn(target.value)}
+              />
+            </div>
+            <button type='submit'>update author</button>
+          </form>
         </div>
-        <button type='submit'>update author</button>
-      </form>
+      }
     </div>
   )
 }

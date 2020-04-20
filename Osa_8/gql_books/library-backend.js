@@ -90,9 +90,9 @@ const resolvers = {
       //   return Book.find({ author: { $in: [ author ] } })
       // }
       if (args.genre) {
-        return Book.find({ genres: { $in: [args.genre] } })
+        return Book.find({ genres: { $in: [args.genre] } }).populate('author')
       }
-      return Book.find({})
+      return Book.find({}).populate('author')
     },
     allAuthors: () => Author.find({}),
     me: (root, args, context) => {
