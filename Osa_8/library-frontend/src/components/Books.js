@@ -48,7 +48,9 @@ const Books = (props) => {
   }
 
   const reset = () => {
-    setShownBooks(books)
+    if(booksAtStart.data) {
+      setShownBooks(booksAtStart.data.allBooks)
+    }
   }
 
   let buttons = genres.map(genre => <button key={genre} onClick={() => { changeGenre(genre) }}>{genre}</button>)
