@@ -45,3 +45,9 @@ Tehtäviä 1-3 ei tarvitse palauttaa.<br/><br/>
 [Ultimate Hooks](https://github.com/rpulkka/FullStack-2k19/tree/master/Osa_7/ultimate-hooks)<br/>
 [Blogilista 2.0. - Front End](https://github.com/rpulkka/FullStack-2k19/tree/master/Osa_7/bloglist-v2-frontend)<br/>
 [Blogilista 2.0. - Back End](https://github.com/rpulkka/FullStack-2k19/tree/master/Osa_7/bloglist-v2-backend)
+
+<h2>Osa 8</h2>
+
+[Kirjasto - Back End](https://github.com/rpulkka/FullStack-2k19/tree/master/Osa_8/gql_books)<br/>
+[Kirjasto - Front End](https://github.com/rpulkka/FullStack-2k19/tree/master/Osa_8/library-frontend)
+
