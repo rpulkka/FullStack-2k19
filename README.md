@@ -51,3 +51,9 @@ Tehtäviä 1-3 ei tarvitse palauttaa.<br/><br/>
 [Kirjasto - Back End](https://github.com/rpulkka/FullStack-2k19/tree/master/Osa_8/gql_books)<br/>
 [Kirjasto - Front End](https://github.com/rpulkka/FullStack-2k19/tree/master/Osa_8/library-frontend)
 
+<h2>Osa 9</h2>
+
+[Laskimet TS](https://github.com/rpulkka/FullStack-2k19/tree/master/Osa_9/first_ts_project)<br/>
+[Kurssitiedot TS](https://github.com/rpulkka/FullStack-2k19/tree/master/Osa_9/courses))<br/>
+[Potilastietokanta - Front End](https://github.com/rpulkka/FullStack-2k19/tree/master/Osa_9/patientor))<br/>
+[Potilastietokanta - Back End](https://github.com/rpulkka/FullStack-2k19/tree/master/Osa_9/patientor-backend))
