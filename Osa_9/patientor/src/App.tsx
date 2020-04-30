@@ -1,13 +1,15 @@
 import React from "react";
 import axios from "axios";
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import { Route, Link, Switch } from "react-router-dom";
 import { Button, Divider, Header, Container } from "semantic-ui-react";
 
 import { apiBaseUrl } from "./constants";
 import { useStateValue } from "./state";
-import { Patient } from "./types";
+import { setPatientListAction, setDiagnosisListAction } from "./state/reducer";
+import { Patient, Diagnosis } from "./types";
 
 import PatientListPage from "./PatientListPage";
+import PatientComponent from "./components/PatientComponent";
 
 const App: React.FC = () => {
   const [, dispatch] = useStateValue();
@@ -19,28 +21,41 @@ const App: React.FC = () => {
         const { data: patientListFromApi } = await axios.get<Patient[]>(
           `${apiBaseUrl}/patients`
         );
-        dispatch({ type: "SET_PATIENT_LIST", payload: patientListFromApi });
+        dispatch(setPatientListAction(patientListFromApi));
       } catch (e) {
         console.error(e);
       }
     };
     fetchPatientList();
+
+    const fetchDiagnosisList = async () => {
+      try {
+        const { data: diagnosisListFromApi } = await axios.get<Diagnosis[]>(
+          `${apiBaseUrl}/diagnosis`
+        );
+        dispatch(setDiagnosisListAction(diagnosisListFromApi));
+      } catch (e) {
+        console.error(e);
+      }
+    };
+    fetchDiagnosisList();
   }, [dispatch]);
 
   return (
     <div className="App">
-      <Router>
-        <Container>
-          <Header as="h1">Patientor</Header>
-          <Button as={Link} to="/" primary>
-            Home
+      <Container>
+        <Header as="h1">Patientor</Header>
+        <Button as={Link} to="/" primary>
+          Home
           </Button>
-          <Divider hidden />
-          <Switch>
-            <Route path="/" render={() => <PatientListPage />} />
-          </Switch>
-        </Container>
-      </Router>
+        <Divider hidden />
+        <Switch>
+          <Route path="/patients/:id">
+            <PatientComponent />
+          </Route>
+          <Route path="/" render={() => <PatientListPage />} />
+        </Switch>
+      </Container>
     </div>
   );
 };
